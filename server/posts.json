@@ -1,0 +1,532 @@
+[   
+    {
+        "type": "Post",
+        "type_action": "added a",
+
+        "type-text": true,
+        "type-other": false,
+
+        "user": {
+            "id": "abc-def-ghi",
+            "name": {
+                "first": "David",
+                "last": "Capatch",
+                "abbreviation": "DC"
+            },
+            "color": "0dE17D"
+        },
+        "date": "Yesterday at 3:30pm",
+        "info": {
+            "text": "I've got some projects to work on the Spring. If you are interested, drop by my office. Topics include... social media use by motorcycle gang members, Google reverse image search for tatoo recognition, data hiding apps used by kids to hide data from their parents, and iTunes vs iCloud backup formats. If one of these interests you, post below and tell me which one.",
+            "for_users": [
+                {
+                    "role": "PGY 1",
+                    "color": "primary"
+                },
+                {
+                    "role": "PGY 2",
+                    "color": "success"
+                },
+                {
+                    "role": "PGY 3",
+                    "color": "info"
+                }
+            ],
+            "applies_to_user": true
+        },
+        "parentheses": "",
+        "actions": [
+            {
+                "text": "Mark Seen",
+                "icon": "fa-star-o"
+            },
+            {
+                "text": "Add Yourself",
+                "icon": "fa-plus-circle"
+            },
+            {
+                "text": "Tag",
+                "icon": "fa-user-plus"
+            }
+        ],
+        "users_acted": {
+            "seen_by": [
+                {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "Rio",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                }
+            ]
+
+        },
+        "details": "Details",
+        "comments": [
+            {
+                "user": {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                "comment_text": "If one of these interests you, post below and tell me which one.",
+                "reply": 0
+            },
+            {
+                "user": {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                "comment_text": "If one of these interests you, post below and tell me which one.",
+                "reply": 1
+            },
+            {
+                "user": {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                "comment_text": "If one of these interests you, post below and tell me which one.",
+                "reply": 2
+            },
+            {
+                "user": {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                "comment_text": "If one of these interests you, post below and tell me which one.",
+                "reply": 0
+            },
+            {
+                "user": {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                "comment_text": "If one of these interests you, post below and tell me which one.",
+                "reply": 1
+            }
+        ]
+    },
+    {
+        "type": "Duty Hours",
+        "type_action": "logged",
+
+        "type-duty_hours": true,
+
+        "user": {
+            "id": "abc-def-ghi",
+            "name": {
+                "first": "David",
+                "last": "Capatch",
+                "abbreviation": "DC"
+            },
+            "color": "0dE17D"
+        },
+        "date": "1 hr",
+        "info": {
+            "shift": {
+                "date": {
+                    "months": [
+                        "April"
+                    ],
+                    "start": {
+                        "year": "2018",
+                        "month": "April",
+                        "day": "21",
+                        "hour": "8:00 am",
+                        "frefix": "7:00 AM"
+                    },
+                    "end": {
+                        "year": "2018",
+                        "month": "April",
+                        "day": "22",
+                        "hour": "6:30 pm",
+                        "frefix": "8:00 AM"
+                    }
+                },
+                "type": "Regular"
+            },
+            "for_users": [
+                {
+                    "role": "PGY 1",
+                    "color": "primary"
+                },
+                {
+                    "role": "PGY 2",
+                    "color": "success"
+                },
+                {
+                    "role": "PGY 3",
+                    "color": "info"
+                }
+            ],
+            "applies_to_user": true
+        },
+        "parentheses": "29 hours",
+        "actions": [
+            {
+                "text": "Mark Seen",
+                "icon": "fa-star-o"
+            },
+            {
+                "text": "Add Yourself",
+                "icon": "fa-plus-circle"
+            },
+            {
+                "text": "Tag",
+                "icon": "fa-user-plus"
+            }
+        ],
+        "users_acted": {
+            "seen_by": [
+                {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "Rio",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "Rio",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                }
+            ]
+
+        },
+        "details": "Details",
+        "comments": [
+            {
+                "user": {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                "comment_text": "If one of these interests you, post below and tell me which one.",
+                "reply": 0
+            }
+        ]
+    },
+    {
+        "type": "Event",
+        "type_action": "created an",
+
+        "type-event": true,
+
+        "user": {
+            "id": "abc-def-ghi",
+            "name": {
+                "first": "David",
+                "last": "Capatch",
+                "abbreviation": "DC"
+            },
+            "color": "0dE17D"
+        },
+        "date": "Yesterday at 3:30pm",
+        "info": {
+            "title": "Event Title",
+            "date": {
+                "month": "APR",
+                "day": 21,
+                "time": "5:30 am"
+            },
+            "location": {
+                "clickable": true,
+                "link": "https://www.google.com/maps/place/100+N+Academy+Ave,+Danville,+PA+17822/@40.9678137,-76.60744,17z/data=!3m1!4b1!4m5!3m4!1s0x89cf652fecc2bff5:0x1dd0d3ff6407a5f4!8m2!3d40.9678097!4d-76.6052513",
+                "address-top": "Main Building",
+                "address-bottom": "Room: 202"
+            },
+            "for_users": [
+                {
+                    "role": "PGY 1",
+                    "color": "primary"
+                },
+                {
+                    "role": "PGY 2",
+                    "color": "success"
+                },
+                {
+                    "role": "PGY 3",
+                    "color": "info"
+                }
+            ],
+            "applies_to_user": true
+        },
+        "parentheses": "",
+        "actions": [
+            {
+                "text": "Mark Seen",
+                "icon": "fa-star-o"
+            },
+            {
+                "text": "Add Yourself",
+                "icon": "fa-plus-circle"
+            },
+            {
+                "text": "Tag",
+                "icon": "fa-user-plus"
+            }
+        ],
+        "users_acted": {
+            "seen_by": [
+                {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                }
+            ]
+
+        },
+        "details": "Details",
+        "comments": [
+            {
+                "user": {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                "comment_text": "If one of these interests you, post below and tell me which one.",
+                "reply": 0
+            }
+        ]
+    },
+    {
+        "type": "Post",
+        "type_action": "added a",
+
+        "type-text": true,
+        "type-other": false,
+
+        "user": {
+            "id": "abc-def-ghi",
+            "name": {
+                "first": "David",
+                "last": "Capatch",
+                "abbreviation": "DC"
+            },
+            "color": "0dE17D"
+        },
+        "date": "Yesterday at 3:30pm",
+        "info": {
+            "text": "I've got some projects to work on the Spring. If you are interested, drop by my office. Topics include... social media use by motorcycle gang members, Google reverse image search for tatoo recognition, data hiding apps used by kids to hide data from their parents, and iTunes vs iCloud backup formats. If one of these interests you, post below and tell me which one.",
+            "for_users": [
+                {
+                    "role": "PGY 1",
+                    "color": "primary"
+                },
+                {
+                    "role": "PGY 2",
+                    "color": "success"
+                },
+                {
+                    "role": "PGY 3",
+                    "color": "info"
+                }
+            ],
+            "applies_to_user": true
+        },
+        "parentheses": "",
+        "actions": [
+            {
+                "text": "Mark Seen",
+                "icon": "fa-star-o"
+            },
+            {
+                "text": "Add Yourself",
+                "icon": "fa-plus-circle"
+            },
+            {
+                "text": "Tag",
+                "icon": "fa-user-plus"
+            }
+        ],
+        "users_acted": {
+            "seen_by": [
+                {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "Rio",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                }
+            ]
+
+        },
+        "details": "Details",
+        "comments": [
+            {
+                "user": {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                "comment_text": "If one of these interests you, post below and tell me which one.",
+                "reply": 0
+            },
+            {
+                "user": {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                "comment_text": "If one of these interests you, post below and tell me which one.",
+                "reply": 1
+            },
+            {
+                "user": {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                "comment_text": "If one of these interests you, post below and tell me which one.",
+                "reply": 2
+            },
+            {
+                "user": {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                "comment_text": "If one of these interests you, post below and tell me which one.",
+                "reply": 0
+            },
+            {
+                "user": {
+                    "id": "abc-def-ghi",
+                    "name": {
+                        "first": "David",
+                        "last": "Capatch",
+                        "abbreviation": "DC"
+                    },
+                    "color": "0dE17D"
+                },
+                "comment_text": "If one of these interests you, post below and tell me which one.",
+                "reply": 1
+            }
+        ]
+    }
+]
