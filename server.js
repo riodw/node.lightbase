@@ -35,9 +35,7 @@ const path = require('path');
 /* Child Process
  * provides the ability to spawn child processes
  * https://nodejs.org/api/child_process.html */
-const {
-    spawn
-} = require('child_process');
+const { spawn } = require('child_process');
 
 
 
@@ -224,7 +222,8 @@ if (ENV == 'local') {
  * CONNECT TO MONGODB
  *************************************************************/
 var configDB = require('./server/database.js')(server_IP);
-// mongoose.connect(configDB.url);
+// DISABLE DATABASE
+mongoose.connect(configDB.url);
 
 
 /*************************************************************
@@ -237,7 +236,7 @@ var app = express();
  *************************************************************/
 var server = http.createServer(app);
 
-// -----------------------------jkl;skladfsjkl;adfsljkl;dfsdfjklsjklfsjkl;adfsjkljkl
+// -----------------------------
 var io = socketio.listen(server);
 
 /*************************************************************
@@ -349,6 +348,27 @@ schema_update.updateUser();
  * URL ROUTES
  *************************************************************/
 require('./server/routes.js')(
+    app,
+    path,
+    io,
+    fs,
+    jf,
+    User
+);
+
+/*************************************************************
+ * API CHANGE IN
+ *************************************************************/
+require('./server/api_change_in/routes_in.js')(
+    app,
+    path,
+    User
+);
+
+/*************************************************************
+ * API CHANGE OUT
+ *************************************************************/
+require('./server/api_change_out/routes_out.js')(
     app,
     path,
     io,

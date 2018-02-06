@@ -38,15 +38,15 @@
         "actions": [
             {
                 "text": "Mark Seen",
-                "icon": "fa-star-o"
+                "icon": "far fa-star"
             },
             {
                 "text": "Add Yourself",
-                "icon": "fa-plus-circle"
+                "icon": "fas fa-user-plus"
             },
             {
                 "text": "Tag",
-                "icon": "fa-user-plus"
+                "icon": "fas fa-users"
             }
         ],
         "users_acted": {
@@ -209,15 +209,15 @@
         "actions": [
             {
                 "text": "Mark Seen",
-                "icon": "fa-star-o"
+                "icon": "far fa-star"
             },
             {
                 "text": "Add Yourself",
-                "icon": "fa-plus-circle"
+                "icon": "fas fa-user-plus"
             },
             {
                 "text": "Tag",
-                "icon": "fa-user-plus"
+                "icon": "fas fa-users"
             }
         ],
         "users_acted": {
@@ -318,15 +318,15 @@
         "actions": [
             {
                 "text": "Mark Seen",
-                "icon": "fa-star-o"
+                "icon": "far fa-star"
             },
             {
                 "text": "Add Yourself",
-                "icon": "fa-plus-circle"
+                "icon": "fas fa-user-plus"
             },
             {
                 "text": "Tag",
-                "icon": "fa-user-plus"
+                "icon": "fas fa-users"
             }
         ],
         "users_acted": {
@@ -417,15 +417,15 @@
         "actions": [
             {
                 "text": "Mark Seen",
-                "icon": "fa-star-o"
+                "icon": "far fa-star"
             },
             {
                 "text": "Add Yourself",
-                "icon": "fa-plus-circle"
+                "icon": "fas fa-user-plus"
             },
             {
                 "text": "Tag",
-                "icon": "fa-user-plus"
+                "icon": "fas fa-users"
             }
         ],
         "users_acted": {

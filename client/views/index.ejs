@@ -136,7 +136,7 @@
             <th scope="row">1</th>
             <td>{{ name.first }}</td>
             <td>{{ name.last }}</td>
-            <td>{{email}}</td>
+            <td>{{ email }}</td>
         </tr>
         {{/users}}
     </script>
@@ -149,10 +149,10 @@
 
         var socket = io.connect('http://localhost:8080');
 
-        socket.on('notification', function (data) {
-            users = data;
-            console.log(data.users);
-            template(data);
+        socket.on('users', function (data) {
+            users['users'] = data;
+            console.log(users);
+            template(users);
             $('.table_users').html(template(users));
         });
         
