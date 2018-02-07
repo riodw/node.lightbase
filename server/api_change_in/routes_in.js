@@ -6,6 +6,7 @@
 module.exports = function (
     app,
     path,
+    io,
     User
 ) {
 
@@ -18,14 +19,49 @@ module.exports = function (
      /*************************************************************
      * API - SETTERs
      *************************************************************/
-    app.post('/api/user/new', (req, res) => {
-        console.log(req.body);
+    app.post('/api/users/new', (req, res) => {
 
-        
-        res.sendStatus(200);
+        if (req.body) {
+            var new_user_data = req.body;
+            
+            var new_user = new User;
+            
+            new_user.info = {
+                date: Date.now(),
+                name: {
+                    first: new_user_data.name.first,
+                    last: new_user_data.name.last,
+                },
+                email: new_user_data.email,
+            }
+
+            // Save New User
+            new_user
+            .save()
+            // .then(() => console.log(new_user));
+
+            res.sendStatus(200);
+        }
     });
 
 
+    app.get('/api/users', (req, res) => {
+
+        User.find({})
+        .select({'info.email': 0, '_id': 0, '__v': 0})
+        .exec(function(err, data) {
+            if (err) throw err;
+
+            if (data) {
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify(data, null, 3));
+            }
+            // No Data
+            else {
+                res.status(409).send('No Data');
+            }
+        });
+    });
 };
 
 

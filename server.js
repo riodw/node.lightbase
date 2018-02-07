@@ -362,6 +362,7 @@ require('./server/routes.js')(
 require('./server/api_change_in/routes_in.js')(
     app,
     path,
+    io,
     User
 );
 
@@ -406,7 +407,7 @@ if (ENV == 'local') {
     // });
 
     server.listen(port, function () {
-        console.log("Chat server listening at", server_IP + ":" + port);
+        console.log("Server listening at", server_IP + ":" + port);
     });
 }
 // END - server.js

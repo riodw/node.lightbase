@@ -79,10 +79,10 @@ module.exports = function (
     io.on('connection', function (socket) {
         console.log('Connection!');
 
-        // Get (user.json) Data
-        jf.readFile(filePath + 'users.json', function (err, data) {
-            socket.emit('users', data);
-        });
+        // // Get (user.json) Data
+        // jf.readFile(filePath + 'users.json', function (err, data) {
+        //     socket.emit('users', data);
+        // });
         // Get (posts.json) Data
         jf.readFile(filePath + 'posts.json', function (err, data) {
             socket.emit('posts', data);

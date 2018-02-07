@@ -36,10 +36,6 @@ var userSchema = mongoose.Schema({
             last: String,
         },
         phone: String,
-        country: String,
-        state: String,
-        about: String,
-        other: Schema.Types.Mixed,
     },
     meta: Schema.Types.Mixed,    
 });
