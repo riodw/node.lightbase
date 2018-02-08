@@ -15,7 +15,6 @@ module.exports = function (
      * CONSTANTS
      *************************************************************/
     var filePath = path.join(__dirname + '/../server/');
-    console.log(filePath);
 
     /*************************************************************
      * SHOW MAIN PAGE
@@ -24,7 +23,6 @@ module.exports = function (
 
         res.render(views_path + 'index', {
             'ENV': ENV,
-            'ROOT_HOST': ROOT_HOST,
             'year': new Date().getFullYear(),
             'server_start_time': server_start_time,
             'server_current_time': new Date().toString()
@@ -50,7 +48,6 @@ module.exports = function (
         // res.sendFile(views_path + 'app-' + ENV + '.html');
         res.render(views_path + 'app', {
             'ENV': ENV,
-            'ROOT_HOST': ROOT_HOST,
             'year': new Date().getFullYear(),
             'server_commit_sha': server_commit_sha,
             'server_start_time': server_start_time,
