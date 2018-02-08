@@ -118,10 +118,15 @@ global.port = process.env.PORT || 8080;
 // Server Startup Time
 global.server_start_time = new Date().toString();
 
+// Commit Hash
+global.server_commit_sha = 'N/A';
+// Commit Branch
+global.server_commit_branch = 'N/A';
+
+
 // absolute path to views
 global.views_path = path.join(__dirname + '/client/views/');
-// Root Domain Name
-global.ROOT_HOST = '';
+
 
 
 // Production Server
@@ -148,14 +153,14 @@ else {
     console.log('ENV == local');
     ENV = 'local';
     require('./server/dev_local.js');
-    
+
     // Commit Branch
-    global.server_commit_branch = require('child_process')
+    server_commit_branch = require('child_process')
     .execSync("git branch | grep \\* | cut -d ' ' -f2").toString().trim();
     console.log('BRANCH == ' + server_commit_branch);
 
     // Commit Hash
-    global.server_commit_sha = require('child_process')
+    server_commit_sha = require('child_process')
     .execSync('git rev-parse HEAD').toString().trim();
 }
 
