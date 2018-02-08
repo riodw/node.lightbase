@@ -2,16 +2,6 @@
 'use strict'
 
 
-// Commit Branch
-global.server_commit_branch = require('child_process')
-    .execSync("git branch | grep \\* | cut -d ' ' -f2").toString().trim();
-console.log('BRANCH == ' + server_commit_branch);
-
-// Commit Hash
-global.server_commit_sha = require('child_process')
-    .execSync('git rev-parse HEAD').toString().trim();
-
-
 // Get Command Line Input for Running Production Manually
 process.argv.forEach(function (val, index, array) {
     // Production CMD
