@@ -7,11 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
+  "keywords": [
+    "realtime"
+  ],
   "author": "Rio Weber",
   "license": "Apache-2.0",
   "dependencies": {
     "body-parser": "^1.15.2",
     "connect-mongo": "^2.0.1",
+    "console.table": "^0.10.0",
     "cookie-parser": "^1.4.3",
     "ejs": "^2.5.7",
     "express": "^4.14.0",
@@ -30,5 +34,8 @@
   },
   "devDependencies": {
     "nodemon": "^1.9.2"
+  },
+  "engines": {
+    "node": "8.9.4"
   }
 }

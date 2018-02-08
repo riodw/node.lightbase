@@ -17,6 +17,11 @@ const http = require('http');
 
 const https = require('https');
 
+/* console.table
+ * Adds console.table method for convenience
+ * https://www.npmjs.com/package/console.table */
+const cTable = require('console.table');
+
 /* OS
  * The os module provides a number of operating system-related utility methods.
  * https://nodejs.org/api/os.html#os_os */
@@ -301,7 +306,9 @@ app.set('view engine', 'ejs');
  * GET SERVER CONFIG SETTINGS serverConfig.json
  *************************************************************/
 var serverConfig = require('./serverConfig.json');
-console.log('(serverConfig.json) ' + serverConfig.signup_email_domain_type);
+console.log('\n(serverConfig.json):');
+console.table(serverConfig);
+
 
 /*************************************************************
  * GENERAL FUNCTIONS

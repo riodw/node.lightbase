@@ -1,3 +1,5 @@
 {
-	"_comment": "Server Config"
+	"_about": "Server Config",
+	"name": "node.lightbase",
+	"version": 1.0
 }
