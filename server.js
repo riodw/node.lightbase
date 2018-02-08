@@ -109,126 +109,47 @@ const ejs = require('ejs');
 /*************************************************************
  * GLOBAL VARIABLES
  *************************************************************/
+// Environment
+global.ENV = process.env.ENV || '';
 // Server IP
-global.server_IP = 0;
+global.server_IP = process.env.IP || '127.0.0.1';
 // Server Port
-global.port = 0;
+global.port = process.env.PORT || 8080;
 // Server Startup Time
 global.server_start_time = new Date().toString();
-// Environment
-global.ENV = '';
-// Commit Branch
-global.server_commit_branch = require('child_process')
-    .execSync("git branch | grep \\* | cut -d ' ' -f2").toString().trim();
-console.log('Branch == ' + server_commit_branch);
-// Commit Hash
-global.server_commit_sha = require('child_process')
-    .execSync('git rev-parse HEAD').toString().trim();
+
 // absolute path to views
 global.views_path = path.join(__dirname + '/client/views/');
 // Root Domain Name
 global.ROOT_HOST = '';
 
 
-
-// Get Command Line Input for Running Production Manually
-process.argv.forEach(function (val, index, array) {
-    // Production CMD
-    if (val == 'production') {
-        console.log('Command Line == Production');
-        ENV = 'production';
-        server_IP = '127.0.0.1';
-        port = 8080;
-
-        // If Set in Env
-        if (process.env.IP)
-            server_IP = process.env.IP;
-        if (process.env.PORT)
-            port = process.env.PORT;
-
-        return;
-    }
-    // Development Command Line
-    if (val == 'development') {
-        console.log('Command Line == Development');
-        ENV = 'development';
-        server_IP = '127.0.0.1';
-        port = 8080;
-
-        return;
-    }
-});
-
-if (!ENV) {
-    // Production
-    if (process.env.ENV == 'production') {
-        console.log('ENV == production');
-        ENV = 'production';
-        server_IP = '127.0.0.1';
-        port = 8080;
-    }
-    // Development - Development Server
-    else if (process.env.ENV == 'development') {
-        console.log('ENV == development');
-        ENV = 'development';
-        server_IP = '127.0.0.1';
-        port = 8080;
-    }
-    // Localhost
-    else if (!ENV) {
-        console.log('ENV == local');
-        ENV = 'local';
-        port = 8080;
-        // Set IP Address
-        var ifaces = os.networkInterfaces();
-        Object.keys(ifaces).forEach(function (ifname) {
-            var alias = 0;
-
-            ifaces[ifname].forEach(function (iface) {
-                if ('IPv4' !== iface.family || iface.internal !== false) {
-                    // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
-                    return;
-                }
-
-                if (alias >= 1) {
-                    // this single interface has multiple ipv4 addresses
-                    console.log(ifname + ':' + alias, iface.address);
-                    throw "Error: " +
-                        "There are multiple IPV4 addresses. You must hard code the the IP address.";
-                } else {
-                    // this interface has only one ipv4 adress
-                    console.log(ifname, iface.address);
-                    // Setting IP
-                    server_IP = iface.address;
-                }
-                ++alias;
-            });
-        });
-
-        // If Set in Env
-        if (process.env.IP)
-            server_IP = process.env.IP;
-        if (process.env.PORT)
-            port = process.env.PORT;
-    }
+// Production Server
+if (ENV == 'production') {
+    console.log('ENV == production');
+    ENV = 'production';
+    console.log(server_IP);
+    
+    /*************************************************************
+     * GET SERVER CONFIG SETTINGS serverConfig.json
+     *************************************************************/
+    var serverConfig = require('./serverConfig.json');
+    console.log('\n(serverConfig.json):');
+    console.table(serverConfig);
+}
+// Development Server
+else if (ENV == 'development') {
+    console.log('ENV == development');
+    ENV = 'development';
+    require('./server/dev_local.js');
+}
+// Local Server
+else {
+    console.log('ENV == local');
+    ENV = 'local';
+    require('./server/dev_local.js');
 }
 
-
-
-
-
-// Set Host Domain
-if (ENV == 'local') {
-    ROOT_HOST = 'http://localhost:8080';
-}
-
-
-/*************************************************************
- * CONNECT TO MONGODB
- *************************************************************/
-var configDB = require('./server/database.js')(server_IP);
-// DISABLE DATABASE
-mongoose.connect(configDB.url);
 
 
 /*************************************************************
@@ -236,13 +157,18 @@ mongoose.connect(configDB.url);
  *************************************************************/
 var app = express();
 
+
 /*************************************************************
  * DEFINE SERVER
  *************************************************************/
 var server = http.createServer(app);
+var server_https = https.createServer(app);
+
+var http_app = express();
 
 // -----------------------------
 var io = socketio.listen(server);
+
 
 /*************************************************************
  * USE MIDDLEWARE 
@@ -258,25 +184,66 @@ app.use(body_parser.json());
 /* Use Method Override  */
 app.use(method_override());
 
+//-------------- Raven ------------------
+if (ENV == 'production') {
+    // Must configure Raven before doing anything else with it
+    var raven_dns = 'URL';
+    Raven.config(raven_dns).install();
+    // The request handler must be the first middleware on the app
+    app.use(Raven.requestHandler());
+}
+
+
+
+// Connect to DB
+if (process.env.DB == 'true') {
+    // Database Marked to exist
+    console.log('DB == true');
+    /*************************************************************
+     * CONNECT TO MONGODB
+     *************************************************************/
+    var configDB = require('./server/database.js')(server_IP);
+    // DISABLE DATABASE
+    mongoose.connect(configDB.url)
+        .then(console.log('DB CONNECTED.'));
+}
+
+
 // Cookie Expiration time
 var hour = 3600000;
-//              hour    day     week    month   year
-var cookie_ttl = hour * 24 * 7 * 4 * 12;
+// cookie_ttl    seconds   hours   days   weeks    months   years
+var cookie_ttl = hour *    24 *    7 *    4 *      12 *     1;
+
 // Define Session
-app.use(
-    session({
-        secret: 'securedsession',
-        saveUninitialized: true,
-        resave: true,
-        cookie: {
-            maxAge: cookie_ttl
-        },
-        store: new connect_mongo({
-            mongooseConnection: mongoose.connection,
-            ttl: 14 * 24 * 60 * 60
+if (process.env.DB == 'true') {
+    app.use(
+        session({
+            secret: 'securedsession',
+            saveUninitialized: true,
+            resave: true,
+            cookie: {
+                maxAge: cookie_ttl
+            },
+            store: new connect_mongo({
+                mongooseConnection: mongoose.connection,
+                ttl: 14 * 24 * 60 * 60
+            })
         })
-    })
-);
+    );
+}
+else {
+    console.log('DB == false');
+    app.use(
+        session({
+            secret: 'securedsession',
+            saveUninitialized: true,
+            resave: true,
+            cookie: {
+                maxAge: cookie_ttl
+            }
+        })
+    );
+}
 
 
 /*************************************************************
@@ -288,6 +255,7 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     return next();
 });
+
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -302,12 +270,17 @@ app.set('view engine', 'ejs');
  ///////////////////////////////////////////////////////////
 */
 
-/*************************************************************
- * GET SERVER CONFIG SETTINGS serverConfig.json
- *************************************************************/
-var serverConfig = require('./serverConfig.json');
-console.log('\n(serverConfig.json):');
-console.table(serverConfig);
+// Force WWW.
+if (ENV == 'production') {
+    
+    app.use((req, res, next) => {
+        if (req.get('Host') === 'example.com') {
+            // Redirect
+            return res.redirect(301, 'https://www.example.com' + req.originalUrl);
+        }
+        return next();
+    });
+}
 
 
 /*************************************************************
@@ -322,6 +295,7 @@ var serverLog = require('./server/server_log.js');
 
 // Log All Requests
 app.use((req, res, next) => {
+
     serverLog.log(req, {});
     return next();
 });
@@ -338,8 +312,8 @@ var User = require('./server/models/user.js').User;
 /*************************************************************
  * DATABASE SCHEMA UPDATES
  *************************************************************/
-var schema_update = require('./server/schema_update.js');
-schema_update.updateUser();
+// var schema_update = require('./server/schema_update.js');
+// schema_update.updateUser();
 //===========================================================
 
 
@@ -393,8 +367,29 @@ require('./server/api_change_out/routes_out.js')(
 // Final Redirect Catch All
 app.all('/*', (req, res) => {
 
-    res.redirect(ROOT_HOST);
+    return res.redirect('/');
 });
+
+/*************************************************************
+ * MAKE SERVER
+ *************************************************************/
+// Catch All HTTP and Force HTTPS
+http_app.all('*', (req, res) => {
+
+    return res.redirect(301, '/');
+});
+
+
+//-------------- SENTRY.io : Raven  -------------------
+if (ENV == 'production') {
+    // Optional fallthrough error handler
+    app.use(function onError(err, req, res, next) {
+        // The error id is attached to `res.sentry` to be returned
+        // and optionally displayed to the user for support.
+        res.statusCode = 500;
+        res.end(res.sentry + '\n');
+    });
+}
 
 
 
@@ -409,12 +404,42 @@ app.all('/*', (req, res) => {
 // For Local Server Creation
 if (ENV == 'local') {
 
-    // http.createServer(app).listen(port, function () {
-    //     console.log('\nSERVER RUNNING.... http://' + server_IP + ':' + port);
-    // });
-
     server.listen(port, function () {
-        console.log("Server listening at", server_IP + ":" + port);
+        console.log("\nSERVER RUNNING AT.... http://", server_IP + ":" + port);
     });
 }
-// END - server.js
+
+
+// Development Server Creation
+if (ENV == 'development') {
+
+    server.listen(port, function () {
+        console.log("\nSERVER RUNNING AT.... http://", server_IP + ":" + port);
+    });
+}
+
+
+// Production Server Creation
+if (ENV == 'production') {
+
+    /*************************************************************
+     * TLS - https
+     *************************************************************/
+    var options = {
+        key: fs.readFileSync('./server/SSL/file.key'),
+        cert: fs.readFileSync('./server/SSL/file.pem'),
+    };
+
+    // Create HTTPS Server    
+    server_https.listen(8443, function () {
+        console.log("\nSERVER RUNNING AT.... http://", server_IP + ":" + 8443);
+    });
+
+
+    // Create Forwarding All to HTTPS on Production Server
+    http.createServer(http_app).listen(port, function () {
+        console.log('SERVER RUNNING.... http://' + server_IP + ':' + port);
+    });
+}
+
+/* END - server.js */
