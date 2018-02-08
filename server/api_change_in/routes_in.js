@@ -35,10 +35,12 @@ module.exports = function (
                 email: new_user_data.email,
             }
 
+            console.log(new_user)
+
             // Save New User
             new_user
             .save()
-            // .then(() => console.log(new_user));
+            .then(() => console.log(new_user));
 
             res.sendStatus(200);
         }
