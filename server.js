@@ -1,4 +1,5 @@
-// server.js
+/* server.js */
+// jr1i%9tc7*9611zsx31%
 'use strict'
 
 
@@ -123,10 +124,11 @@ global.server_commit_sha = 'N/A';
 // Commit Branch
 global.server_commit_branch = 'N/A';
 
+// Database Exists
+global.DB = process.env.DB || 'true';
 
 // absolute path to views
 global.views_path = path.join(__dirname + '/client/views/');
-
 
 
 // Production Server
@@ -210,7 +212,7 @@ if (ENV == 'production') {
 
 
 // Connect to DB
-if (process.env.DB == 'true') {
+if (DB == 'true') {
     // Database Marked to exist
     console.log('DB == true');
     /*************************************************************
@@ -229,7 +231,7 @@ var hour = 3600000;
 var cookie_ttl = hour *    24 *    7 *    4 *      12 *     1;
 
 // Define Session
-if (process.env.DB == 'true') {
+if (DB == 'true') {
     app.use(
         session({
             secret: 'securedsession',
@@ -434,26 +436,26 @@ if (ENV == 'development') {
 
 
 // Production Server Creation
-if (ENV == 'production') {
+// if (ENV == 'production') {
 
-    /*************************************************************
-     * TLS - https
-     *************************************************************/
-    var options = {
-        key: fs.readFileSync('./server/SSL/file.key'),
-        cert: fs.readFileSync('./server/SSL/file.pem'),
-    };
+//     /*************************************************************
+//      * TLS - https
+//      *************************************************************/
+//     var options = {
+//         key: fs.readFileSync('./server/SSL/file.key'),
+//         cert: fs.readFileSync('./server/SSL/file.pem'),
+//     };
 
-    // Create HTTPS Server    
-    server_https.listen(8443, function () {
-        console.log("\nSERVER RUNNING AT.... http://", server_IP + ":" + 8443);
-    });
+//     // Create HTTPS Server    
+//     server_https.listen(8443, function () {
+//         console.log("\nSERVER RUNNING AT.... http://", server_IP + ":" + 8443);
+//     });
 
 
-    // Create Forwarding All to HTTPS on Production Server
-    http.createServer(http_app).listen(port, function () {
-        console.log('SERVER RUNNING.... http://' + server_IP + ':' + port);
-    });
-}
+//     // Create Forwarding All to HTTPS on Production Server
+//     http.createServer(http_app).listen(port, function () {
+//         console.log('SERVER RUNNING.... http://' + server_IP + ':' + port);
+//     });
+// }
 
 /* END - server.js */
