@@ -81,22 +81,27 @@ module.exports = function (
         //     socket.emit('users', data);
         // });
         // Get (posts.json) Data
-        jf.readFile(filePath + 'posts.json', function (err, data) {
+        jf.readFile(filePath + 'data/posts.json', function (err, data) {
             socket.emit('posts', data);
+        });
+
+        // Get composer Data
+        jf.readFile(filePath + 'data/composer.json', function (err, data) {
+            socket.emit('composer', data);
         });
 
 
 
         /* UPDATES */
 
-        // Watch For (user.json) File Update
-        fs.watch(filePath + 'users.json', function (event, fileName) {
+        // user.json
+        fs.watch(filePath + 'data/users.json', function (event, fileName) {
             console.log("Watch (users.json)");
             // watching my users.json file for any changes
             // NOTE: fs.watch returns event twice on detecting change due to reason that editors fire 2 events --- there are workarounds for this on stackoverflow
 
             // Get Data
-            jf.readFile(filePath + 'users.json', function (err, data) {
+            jf.readFile(filePath + 'data/users.json', function (err, data) {
                 // if change detected read the users.json
 
                 // Send Data
@@ -106,14 +111,14 @@ module.exports = function (
 
         });
 
-        // Watch For (posts.json) File Update
-        fs.watch(filePath + 'posts.json', function (event, fileName) {
+        // posts.json
+        fs.watch(filePath + 'data/posts.json', function (event, fileName) {
             console.log("Watch (posts.json)");
             // watching my users.json file for any changes
             // NOTE: fs.watch returns event twice on detecting change due to reason that editors fire 2 events --- there are workarounds for this on stackoverflow
 
             // Get Data
-            jf.readFile(filePath + 'posts.json', function (err, data) {
+            jf.readFile(filePath + 'data/posts.json', function (err, data) {
                 // if change detected read the users.json
 
                 // Send Data
@@ -121,6 +126,16 @@ module.exports = function (
                 socket.emit('posts', data);
             });
 
+        });
+
+        // composer.json
+        fs.watch(filePath + 'data/composer.json', function (event, fileName) {
+            console.log("Watch (composer.json)");
+
+            // Get Data
+            jf.readFile(filePath + 'data/composer.json', function (err, data) {
+                socket.emit('composer', data);
+            });
         });
 
 

@@ -125,7 +125,10 @@ global.server_commit_sha = 'N/A';
 global.server_commit_branch = 'N/A';
 
 // Database Exists
+// sudo mongod --replSet rs0
 global.DB = process.env.DB || 'true';
+global.database_url = 'mongodb://localhost';
+// global.database_url = 'mongodb://lightbase:jr1i%259tc7*9611zsx31%25@ds229648.mlab.com:29648/lightbase';
 
 // absolute path to views
 global.views_path = path.join(__dirname + '/client/views/');
@@ -178,9 +181,9 @@ var app = express();
  * DEFINE SERVER
  *************************************************************/
 var server = http.createServer(app);
-var server_https = https.createServer(app);
+// var server_https = https.createServer(app);
 
-var http_app = express();
+// var http_app = express();
 
 // -----------------------------
 var io = socketio.listen(server);
@@ -218,10 +221,15 @@ if (DB == 'true') {
     /*************************************************************
      * CONNECT TO MONGODB
      *************************************************************/
-    var configDB = require('./server/database.js')(server_IP);
+    var configDB = require('./server/database.js')(database_url);
     // DISABLE DATABASE
-    mongoose.connect(configDB.url)
-        .then(console.log('DB CONNECTED.'));
+    mongoose.connect(configDB.url, function(err, db) {
+            if(err) {
+                console.log("ERROR: unable to connect to Database: " + err);
+                return;
+            }
+            console.log('DB CONNECTED.');
+        })
 }
 
 
@@ -390,10 +398,10 @@ app.all('/*', (req, res) => {
  * MAKE SERVER
  *************************************************************/
 // Catch All HTTP and Force HTTPS
-http_app.all('*', (req, res) => {
+// http_app.all('*', (req, res) => {
 
-    return res.redirect(301, '/');
-});
+//     return res.redirect(301, '/');
+// });
 
 
 //-------------- SENTRY.io : Raven  -------------------
