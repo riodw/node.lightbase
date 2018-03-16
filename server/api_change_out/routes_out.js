@@ -7,8 +7,7 @@ module.exports = function (
     path,
     io,
     fs,
-    jf,
-    User
+    jf
 ) {
 
     // https://docs.mongodb.com/manual/tutorial/convert-standalone-to-replica-set/
@@ -16,11 +15,20 @@ module.exports = function (
     // https://docs.mongodb.com/v3.6/tutorial/change-streams-example/
     // http://plusnconsulting.com/post/MongoDB-Change-Streams/
 
+    var User = require('../models/user.js').User;
+
+    var Composer = require('../models/composer.js').Composer;
+
 
     /*************************************************************
      * CONSTANTS
      *************************************************************/
-    const changeStream = User.watch();
+    var changeStream = {
+        user: User.watch(),
+        composer: Composer.watch()
+    }
+
+    
     
     // Watch For Changes
     // changeStream.next(function(err, next) {
@@ -37,7 +45,7 @@ module.exports = function (
         console.log('Connection!');
         
         // USERS - Emit
-        User.find({}, {'info': 1, '_id': 0}, (err, data) => {
+        User.find({}, {'_id': 0}, (err, data) => {
             if (err) throw err;
     
             if (data) {
@@ -45,21 +53,50 @@ module.exports = function (
             }
         });
         // USERS - Change
-        changeStream.on('change', function(change) {
+        changeStream.user.on('change', function(change) {
             console.log('changeStream');
             // expect(change).to.exist;
             // client.close();
             // done();
-            User.find({}, {'info': 1, '_id': 0}, (err, data) => {
+            User.find({}, {'_id': 0}, (err, data) => {
                 if (err) throw err;
         
                 if (data) {
                     socket.emit('users', data);
                 }
             });
+        });
+    });
+
+
+    // Socket Connection
+    io.on('connection', function (socket) {
+        console.log('Connection!');
+        
+        // composer - Emit
+        Composer.find({}, {'_id': 0}, (err, data) => {
+            if (err) throw err;
     
+            if (data) {
+                console.log(data[0]);
+                socket.emit('composer', data[0]);
+            }
         });
 
+        // composer - Change
+        changeStream.composer.on('change', function(change) {
+            console.log('changeStream');
+            // expect(change).to.exist;
+            // client.close();
+            // done();
+            Composer.find({}, {'_id': 0}, (err, data) => {
+                if (err) throw err;
+        
+                if (data) {
+                    socket.emit('composer', data[0]);
+                }
+            });
+        });
     });
 
 

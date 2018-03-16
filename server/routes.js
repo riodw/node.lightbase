@@ -60,7 +60,7 @@ module.exports = function (
     /*************************************************************
      * API - SETTERs
      *************************************************************/
-    app.post('/api/test/', (req, res) => {
+    app.post('*', (req, res) => {
         console.log(req.body);
         res.sendStatus(200);
     });
@@ -73,7 +73,7 @@ module.exports = function (
 
 
     // Socket Connection
-    io.on('connection', function (socket) {
+    io.on('connection', (socket) => {
         console.log('Connection!');
 
         // // Get (user.json) Data
@@ -86,9 +86,9 @@ module.exports = function (
         });
 
         // Get composer Data
-        jf.readFile(filePath + 'data/composer.json', function (err, data) {
-            socket.emit('composer', data);
-        });
+        // jf.readFile(filePath + 'data/composer.json', function (err, data) {
+        //     socket.emit('composer', data);
+        // });
 
 
 
@@ -129,14 +129,14 @@ module.exports = function (
         });
 
         // composer.json
-        fs.watch(filePath + 'data/composer.json', function (event, fileName) {
-            console.log("Watch (composer.json)");
+        // fs.watch(filePath + 'data/composer.json', function (event, fileName) {
+        //     console.log("Watch (composer.json)");
 
-            // Get Data
-            jf.readFile(filePath + 'data/composer.json', function (err, data) {
-                socket.emit('composer', data);
-            });
-        });
+        //     // Get Data
+        //     jf.readFile(filePath + 'data/composer.json', function (err, data) {
+        //         socket.emit('composer', data);
+        //     });
+        // });
 
 
 

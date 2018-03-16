@@ -35,7 +35,7 @@ module.exports = function (
                 email: new_user_data.email,
             }
 
-            console.log(new_user)
+            console.log(new_user);
 
             // Save New User
             new_user

@@ -331,13 +331,16 @@ app.use((req, res, next) => {
 /* USER - From User */
 var User = require('./server/models/user.js').User;
 
+var Composer = require('./server/models/composer.js').Composer;
+
 
 //==========================================================
 /*************************************************************
  * DATABASE SCHEMA UPDATES
  *************************************************************/
-// var schema_update = require('./server/schema_update.js');
+var schema_update = require('./server/schema_update.js');
 // schema_update.updateUser();
+// schema_update.createComposer();
 //===========================================================
 
 
@@ -367,8 +370,7 @@ require('./server/routes.js')(
 require('./server/api_change_in/routes_in.js')(
     app,
     path,
-    io,
-    User
+    io
 );
 
 /*************************************************************
@@ -379,8 +381,7 @@ require('./server/api_change_out/routes_out.js')(
     path,
     io,
     fs,
-    jf,
-    User
+    jf
 );
 
 

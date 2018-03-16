@@ -37,7 +37,7 @@ var userSchema = mongoose.Schema({
         },
         phone: String,
     },
-    meta: Schema.Types.Mixed,    
+    meta: Schema.Types.Mixed,
 });
 
 var User = mongoose.model('User', userSchema);
