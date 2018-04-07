@@ -129,6 +129,9 @@ global.server_commit_branch = 'N/A';
 global.DB = process.env.DB || 'true';
 global.database_url = 'mongodb://localhost';
 // global.database_url = 'mongodb://lightbase:jr1i%259tc7*9611zsx31%25@ds229648.mlab.com:29648/lightbase';
+var dbpass = 'mvvv35wonthkk4z8p8f';
+
+// global.database_url = 'mongodb+srv://mongo:' + dbpass + '@cluster0-mxjkp.mongodb.net/test';
 
 // absolute path to views
 global.views_path = path.join(__dirname + '/client/views/');
@@ -338,7 +341,7 @@ var Composer = require('./server/models/composer.js').Composer;
 /*************************************************************
  * DATABASE SCHEMA UPDATES
  *************************************************************/
-var schema_update = require('./server/schema_update.js');
+// var schema_update = require('./server/schema_update.js');
 // schema_update.updateUser();
 // schema_update.createComposer();
 //===========================================================
