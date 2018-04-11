@@ -1,0 +1,258 @@
+{
+    "posts": [
+        {
+            "name": "post",
+            "types": [
+                "text",
+                "photo",
+                "link",
+                "file"
+            ]
+        },
+        {
+            "name": "log",
+            "types": [
+                "hours",
+                "case"
+            ]
+        },
+        {
+            "name": "event",
+            "types": [
+                "conference"
+            ]
+        },
+        {
+            "name": "report",
+            "types": [
+                "demographics"
+            ]
+        }
+    ],
+    "home": {
+        "composer": {
+            "active_post_type": "post",
+            "active_post_sub_type": "text",
+            "place_holder": "New Post...",
+            "show_text_input": true,
+
+            "post_types": {
+                "post": {
+                    "default_option": "text",
+                    "options": {
+                        "text": {
+                            "icon": "fas fa-comment",
+                            "place_holder": "New Post..."
+                        },
+                        "photo": {
+                            "icon": "fas fa-image",
+                            "place_holder": "Drag Photo here..."
+                        },
+                        "link": {
+                            "icon": "fas fa-link",
+                            "place_holder": "Paste Link..."
+                        },
+                        "file": {
+                            "icon": "fas fa-file",
+                            "place_holder": "Drag File here..."
+                        },
+                        "": {
+                            "color": "info",
+                            "icon": "fas fa-ellipsis-h",
+                            "place_holder": "New Post..."
+                        }
+                    }
+                },
+                "log": {
+                    "default_option": "hours",
+                    "options": {
+                        "hours": {
+                            "icon": "fas fa-clock",
+                            "place_holder": "New Post..."
+                        },
+                        "case": {
+                            "icon": "fas fa-heartbeat",
+                            "place_holder": "Search Cases...",
+                            "select_all": [{
+                                    "name": "Abdominal Paracentesis",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Advanced Cardiac Life Support",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Antinuclear Antibody",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Arterial Blood Gas",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Arterial Line Placement",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Bad Cholesterol Test (Cholesterol Test)",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Biopsy of Skin",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Central Line Placement",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Chest Tube",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "EKG Interpretation",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Endotracheal Intubation",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Flouroscopy",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "IV Line Placement",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Laceration repair",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Lumbar Puncture",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "PAP Smear",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Pelvic Exam",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Template X",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Thoracentesis",
+                                    "image": "fas fa-image"
+                                }
+                            ],
+                            "select": [{
+                                    "name": "Abdominal Paracentesis",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Advanced Cardiac Life Support",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Antinuclear Antibody",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Arterial Blood Gas",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Arterial Line Placement",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Bad Cholesterol Test (Cholesterol Test)",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Biopsy of Skin",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Central Line Placement",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Chest Tube",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "EKG Interpretation",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Endotracheal Intubation",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Flouroscopy",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "IV Line Placement",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Laceration repair",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Lumbar Puncture",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "PAP Smear",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Pelvic Exam",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Template X",
+                                    "image": "fas fa-image"
+                                },
+                                {
+                                    "name": "Thoracentesis",
+                                    "image": "fas fa-image"
+                                }
+                            ]
+                        },
+                        "": {
+                            "color": "info",
+                            "icon": "fas fa-ellipsis-h"
+                        }
+                    }
+                },
+                "event": {
+                    "default_option": "conference",
+                    "options": {
+                        "conference": {
+                            "icon": "fas fa-clock",
+                            "place_holder": "New Post..."
+                        }
+                    }
+                },
+                "report": {
+                    "default_option": "demographics",
+                    "options": {
+                        "demographics": {
+                            "icon": "fas fa-clock",
+                            "place_holder": "New Post..."
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
